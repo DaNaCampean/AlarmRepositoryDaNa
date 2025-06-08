@@ -1,12 +1,10 @@
 package pages.CustomerSite.CustomerSpecificPage.SettingsPage;
 
-import base.BasePageDriver;
-import pages.CustomerSite.CustomerSpecificPage.CustomerHomePage;
-import pages.CustomerSite.HomePage;
-import utils.Utils;
+import base.BasePage;
+import utils.WaitUtils;
 import org.openqa.selenium.By;
-
-public class SettingsHomePage extends BasePageDriver {
+import static utils.DriverUtils.driver;
+public class SettingsHomePage extends BasePage {
 
     //Locators section
 
@@ -21,8 +19,8 @@ public class SettingsHomePage extends BasePageDriver {
 
     public void selectLoginInfo(){
         System.out.println("before -select login info page");
-        Utils.implicitlyWaitFiveSeconds();
-        Utils.waitForElementVisible(driver,loginInfoXPath,30);
+        WaitUtils.implicitlyWaitFiveSeconds();
+        WaitUtils.waitForElementVisible(driver,loginInfoXPath,30);
         System.out.println("before click site info");
         driver.findElement(loginInfoXPath).click();
         System.out.println("after click site info");

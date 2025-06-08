@@ -1,14 +1,14 @@
 package pages.CustomerSite.CustomerSpecificPage;
 
-import base.BasePageDriver;
-import pages.CustomerSite.CustomerSpecificPage.SettingsPage.LoginInformationPage.LoginInformationPage;
-import pages.CustomerSite.CustomerSpecificPage.SettingsPage.LoginInformationPage.SiteAppearancePage;
-import utils.Utils;
+import base.BasePage;
+import utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.Color;
 
-public class CustomerHomePage extends BasePageDriver {
+import static utils.DriverUtils.driver;
+
+public class CustomerHomePage extends BasePage {
     //Locators section
 
     By customerNameXPath = By.xpath("//span[text() = 'PM360R_243D17']");
@@ -45,24 +45,25 @@ public class CustomerHomePage extends BasePageDriver {
         }
 
     public String customerName(){
-        Utils.waitForElementVisible(driver,customerNameXPath,30);
-        return driver.findElement(customerNameXPath).getText();
+        WebElement customerName = WaitUtils.waitForElementToBeVisible(driver,customerNameXPath,15);
+        return customerName.getText();
+             //   driver.findElement(customerNameXPath).getText();
     }
 
+
     public String pageHeaderName(By elementXPath){
-        System.out.println("base = ");
-        return driver.findElement(elementXPath).getText();
+        return  WaitUtils.waitForElementToBeClickable(driver,elementXPath,30).getText();
 
     }
 
     public void selectSettings(){
 
 
-        Utils.waitForElementVisible(driver,settingsXPath,30);
+        WaitUtils.waitForElementToBeVisible(driver,settingsXPath,30);
         System.out.println("BEFORE CLICK SETTINGS");
-        Utils.implicitlyWaitFiveSeconds();
+        WaitUtils.implicitlyWaitFiveSeconds();
         WebElement settingWebElement = driver.findElement(settingsXPath);
-        Utils.implicitlyWaitFiveSeconds();
+        WaitUtils.implicitlyWaitFiveSeconds();
         settingWebElement.click();
 
         System.out.println("AFTER click settings");
@@ -70,9 +71,9 @@ public class CustomerHomePage extends BasePageDriver {
     public void selectAutomation(){
 
 
-        Utils.waitForElementVisible(driver,automationXPath,30);
+        WaitUtils.waitForElementToBeVisible(driver,automationXPath,30);
         System.out.println("BEFORE CLICK automation");
-        Utils.implicitlyWaitFiveSeconds();
+        WaitUtils.implicitlyWaitFiveSeconds();
         driver.findElement(automationXPath).click();
         System.out.println("AFTER click automation");
     }
@@ -80,15 +81,14 @@ public class CustomerHomePage extends BasePageDriver {
     public void selectHome(){
         System.out.println("select HOME");
 
-        Utils.waitForElementVisible(driver,loginInfoNameXPath,30);
-        Utils.implicitlyWaitFiveSeconds();
+        WaitUtils.waitForElementToBeVisible(driver,loginInfoNameXPath,30);
+        WaitUtils.implicitlyWaitFiveSeconds();
         driver.findElement(homeXPath).click();
     }
 
     public void refreshApp(){
         driver.findElement(refreshXPath).click();
-        Utils.implicitlyWaitFiveSeconds();
-        System.out.println("refreshhhh");
+        WaitUtils.implicitlyWaitFiveSeconds();
     }
 
     public Color darkModeAppliedRGBA(){

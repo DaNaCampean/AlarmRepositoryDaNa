@@ -1,11 +1,13 @@
 package base;
 
-import static base.BasePageDriver.driver;
+import static utils.DriverUtils.driver;
 
 public class BaseURLs {
 
     public static void goToCustomerSiteURL(){
-        driver.get("https://international.alarm.com/adc/");
+       // driver.get("https://international.alarm.com/adc/");
+        driver.get("https://www.alarm.com/login.aspx");
+
     }
 
     public static void goToDealerSiteURL(){

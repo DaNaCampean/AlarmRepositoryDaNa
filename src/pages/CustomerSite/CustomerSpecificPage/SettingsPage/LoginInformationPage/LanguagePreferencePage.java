@@ -1,6 +1,6 @@
 package pages.CustomerSite.CustomerSpecificPage.SettingsPage.LoginInformationPage;
 
-import base.BasePageDriver;
+import base.BasePage;
 
-public class LanguagePreferencePage extends BasePageDriver {
+public class LanguagePreferencePage extends BasePage {
 }
