@@ -55,25 +55,12 @@ public class BasePage {
     }
 
     public String getText(By element) {
-        String getTextFromElement = "";
-        try {
-            getTextFromElement = isVisible(element).getText();
-        } catch (Exception e) {
-            System.out.println("The element is not found. Cannot \"getText\" fot it - " + element);
-        }
-        return getTextFromElement;
+        return isVisible(element).getText();
     }
 
     public String getAttributeString(By element, String attribute) {
-        String getAttributeFromElement = "";
-        try {
-            getAttributeFromElement = isVisible(element).getDomAttribute(attribute);
-        } catch (Exception e) {
-            System.out.println("The element is not found");
-        }
-        return getAttributeFromElement;
+        return isVisible(element).getDomAttribute(attribute);
     }
-
 }
 
 
