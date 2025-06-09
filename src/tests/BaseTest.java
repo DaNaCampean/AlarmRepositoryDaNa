@@ -1,11 +1,15 @@
 package tests;
 
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+
+import pages.CustomerSite.LogInPage;
 import pages.CustomerSite.CustomerSpecificPage.CustomerHomePage;
+import pages.CustomerSite.CustomerSpecificPage.SettingsPage.SettingsHomePage;
 import pages.CustomerSite.CustomerSpecificPage.SettingsPage.LoginInformationPage.LoginInformationPage;
 import pages.CustomerSite.CustomerSpecificPage.SettingsPage.LoginInformationPage.SiteAppearancePage;
-import pages.CustomerSite.LogInPage;
-import pages.CustomerSite.CustomerSpecificPage.SettingsPage.SettingsHomePage;
-import org.testng.annotations.*;
+
 import utils.DriverUtils;
 
 
@@ -37,7 +41,7 @@ public class BaseTest {
     @AfterSuite
     public void browserQuit(){
 
-     // DriverUtils.browserQuit();
+     DriverUtils.browserQuit();
 
     }
 }

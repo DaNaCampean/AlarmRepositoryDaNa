@@ -1,18 +1,15 @@
 package pages.CustomerSite.CustomerSpecificPage.SettingsPage.LoginInformationPage;
 
-import static utils.DriverUtils.driver;
-
 import base.BasePage;
-import utils.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.Color;
+
+import static utils.DriverUtils.driver;
 
 public class SiteAppearancePage extends BasePage {
 
     //Locators section
 
-    By darkModeTextXPath = By.xpath("//span[text() = 'Dark Mode']");
-    By highContrastTextXPath = By.xpath("//span[text() = 'High Contrast']");
     By pageHeaderSiteAppearanceXPath = By.xpath("//h1[text() = 'Site Appearance']");
     By darkModeToggleXPath = By.xpath("//input[@class='dark-mode']");
     By highContrastToggleXPath = By.xpath("//input[@class='high-contrast' and @type='checkbox']");
@@ -20,68 +17,68 @@ public class SiteAppearancePage extends BasePage {
     By notificationSave = By.xpath("//p[@class='notification-text' and text()='Your preferences have been updated.']");
 
     //Methods section
+/*
+NU merg astea, pe toggle sa verific ca e visible sau clickable....asa ca am folosit fara verificari
+
+public String returnAttributeDarkMode(String attribute){
+      return getAttributeString(darkModeToggleXPath, attribute);
+   }
+
+    public String returnAttributeContrast(String attribute){
+        return getAttributeString(highContrastToggleXPath, attribute);
+   }
+
+public void darkModeClick(){
+        clickWait(darkModeToggleXPath);
+   }
+
+   public void contrastClick(){
+        clickWait(highContrastToggleXPath);
+    }
+
+ */
+
 
     public String returnAttributeDarkMode(String attribute){
-        System.out.println("TEXT = " + driver.findElement(darkModeTextXPath).getText());
         return driver.findElement(darkModeToggleXPath).getDomAttribute(attribute);
+
     }
 
     public String returnAttributeContrast(String attribute){
-        System.out.println("TEXT = " + driver.findElement(highContrastTextXPath).getText());
         return driver.findElement(highContrastToggleXPath).getDomAttribute(attribute);
-    }
-    public void darkModeClick(){
-         driver.findElement(darkModeToggleXPath).click();
-       // System.out.println("Toggle = " + returnAttributeDarkMode("data-checked"));
+   }
 
+
+    public void darkModeClick(){
+        driver.findElement(darkModeToggleXPath).click();
     }
 
     public void contrastClick(){
-
         driver.findElement(highContrastToggleXPath).click();
     }
 
-    public By pageHeaderName(){
-        return pageHeaderSiteAppearanceXPath;
+    public String pageHeaderName(){
+        return getText(pageHeaderSiteAppearanceXPath);
     }
 
     public void saveClick(){
-
-        driver.findElement(saveButtonXPath).click();
+        clickWait(saveButtonXPath);
     }
     public String returnNotificationSave(){
-        WaitUtils.waitForElementVisible(driver, notificationSave,30);
-        System.out.println("TEXT = " + driver.findElement(notificationSave).getText());
-        return driver.findElement(notificationSave).getText();
+        isVisible(notificationSave);
+        return getText(notificationSave);
     }
     public Color contrastToggleBlue(){
-
         contrastClick();//Toggle off
-        contrastClick(); //Toggle on again for next to appear:  @media not all and (pointer: coarse) {
-
-        Color toggleColor = Color.fromString(driver.findElement(highContrastToggleXPath).getCssValue("outline-color"));
-        System.out.println("TOGGLE COLOR = " + toggleColor);
-
-        assert toggleColor.asRgba().equals("rgba(45, 164, 240, 1)"); //on
-        System.out.println("toggle BLUE!!!!!!!!!!!!!");
-        return toggleColor;
+        contrastClick(); //Toggle on again for next to appear:  @media not all and (pointer: coarse)
+       // NU MERGE ASA:  return Color.fromString(isVisible(highContrastToggleXPath).getCssValue("outline-color"));
+        return Color.fromString(driver.findElement(highContrastToggleXPath).getCssValue("outline-color"));
     }
 
-    public Color darkModeToggleBlue(){
-
+    public Color darkModeToggleBlue() {
         darkModeClick();//Toggle off
         darkModeClick(); //Toggle on again for next to appear:  @media not all and (pointer: coarse) {
-
-        Color toggleColor = Color.fromString(driver.findElement(darkModeToggleXPath).getCssValue("outline-color"));
-        System.out.println("TOGGLE COLOR = " + toggleColor);
-
-        assert toggleColor.asRgba().equals("rgba(45, 164, 240, 1)"); //on
-        System.out.println("toggle BLUE!!!!!!!!!!!!!");
-        return toggleColor;
+        // NU MERGE ASA:   return Color.fromString(isVisible(darkModeToggleXPath).getCssValue("outline-color"));
+        return Color.fromString(driver.findElement(darkModeToggleXPath).getCssValue("outline-color"));
     }
-
-
-
-
-
 }

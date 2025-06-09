@@ -1,7 +1,7 @@
 package base;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebElement;
 import utils.WaitUtils;
 
 import static utils.DriverUtils.driver;
@@ -9,6 +9,11 @@ import static utils.DriverUtils.driver;
 public class BasePage {
 
     //Methods section
+
+    public void selectItem(By element) {
+        isVisible(element);
+        clickWait(element);
+    }
 
     public String getURL() {
         String getURL = "";
@@ -20,29 +25,39 @@ public class BasePage {
         return getURL;
     }
 
-    public void clickByActions(By element) {
-        Actions actions = new Actions(driver); // Instantiate the Actions class needed for double click
-
-        try {
-            WaitUtils.waitForElementToBeClickable(driver, element, 15);
-            actions.click(WaitUtils.waitForElementToBeClickable(driver, element, 15)).perform(); // Perform click
-        } catch (Exception e) {
-            System.out.println("The element is not found or Cannot double click on it - " + element);
-        }
-    }
-
     public static void clickWait(By element) {
         try {
-            WaitUtils.waitForElementToBeClickable(driver, element, 15).click();
+            WaitUtils.waitForElementToBeClickable(driver, element, 30).click();
         } catch (Exception e) {
             System.out.println("The element is not found or not clickable = " + element);
         }
     }
 
+    public static void fillFields(String text, By element) {
+        try {
+            WebElement userNameTextField =isVisible(element);
+            clickWait(element);
+            userNameTextField.sendKeys(text);
+
+        } catch (Exception e) {
+            System.out.println("The element is not visible = " + element);
+        }
+    }
+
+    public static WebElement isVisible(By byElement) {
+        WebElement element=null;
+        try {
+           element  = WaitUtils.waitForElementToBeVisible(driver, byElement, 30);
+        } catch (Exception e) {
+            System.out.println("The element is not visible = " + byElement);
+        }
+       return element;
+    }
+
     public String getText(By element) {
         String getTextFromElement = "";
         try {
-            getTextFromElement = WaitUtils.waitForElementToBeVisible(driver, element, 15).getText();
+            getTextFromElement = isVisible(element).getText();
         } catch (Exception e) {
             System.out.println("The element is not found. Cannot \"getText\" fot it - " + element);
         }
@@ -52,7 +67,7 @@ public class BasePage {
     public String getAttributeString(By element, String attribute) {
         String getAttributeFromElement = "";
         try {
-            getAttributeFromElement = WaitUtils.waitForElementToBeVisible(driver, element, 15).getDomAttribute(attribute);
+            getAttributeFromElement = isVisible(element).getDomAttribute(attribute);
         } catch (Exception e) {
             System.out.println("The element is not found");
         }

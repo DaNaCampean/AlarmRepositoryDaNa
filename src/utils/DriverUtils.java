@@ -21,14 +21,11 @@ public class DriverUtils {
             ChromeOptions options = new ChromeOptions();
             driver = new ChromeDriver(options);
             driver.manage().window().maximize();
-           // driver.manage().deleteAllCookies();
         }
     }
 
     public static void browserQuit(){
-        System.out.println("br quit? ");
         if (driver!=null){
-            System.out.println("suntem in if? ");
             driver.quit();
         }
     }
