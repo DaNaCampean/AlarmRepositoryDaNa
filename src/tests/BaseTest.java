@@ -23,8 +23,8 @@ public class BaseTest {
     @BeforeSuite
     public void initDriver(){
 
-        DriverUtils.setupWindowsWebDriverPath();
-        //DriverUtils.setupMacWebDriverPath();
+        //DriverUtils.setupWindowsWebDriverPath();
+        DriverUtils.setupMacWebDriverPath();
         DriverUtils.chromeDriverOpen();
 
     }

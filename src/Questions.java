@@ -46,6 +46,6 @@ deci poti compara daca e falxse, e ok de dat click, altfel nu
 poti edita acolo pe xpath: dublu click, apoi adaugi tu ce vrei...gen:
 asta e initial:  <input id="ember15" tabindex="0" data-checked="true" class="dark-mode" data-auto="dark-mode-toggle" type="checkbox">
 editezi si iese: <input id="ember15" tabindex="0" data-checked="true" class="dark-mode" data-auto="dark-mode-toggle" type="checkbox" disabled="true">
-
+//ul[@id = 'menu-mainmenu']//span[contains(@class, 'menu-text') and contains(., 'LOGIN')]
  */
 }

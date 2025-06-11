@@ -16,6 +16,7 @@ public class CustomerSiteDarkModeTest extends BaseTest{
 
         System.out.println("\nPRECONDITIONS: Make sure DarkMode and High Contrast are OFF/ DISABLED");
         BaseURLs.goToCustomerSiteURL(); //open Customer Site
+        login.selectSignIn();
         login.signInWithCredentials(); // login with user and pass
         customer.selectSettings(); // Open Settings from left menu
         settings.selectLoginInfo(); // Open Login Information page
