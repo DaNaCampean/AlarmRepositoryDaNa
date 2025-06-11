@@ -5,6 +5,7 @@ import org.openqa.selenium.support.Color;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utils.WaitUtils;
 
 public class CustomerSiteDarkModeTest extends BaseTest{
 
@@ -180,7 +181,7 @@ public class CustomerSiteDarkModeTest extends BaseTest{
         Assert.assertEquals(attribute, "true", "Verified that the Toggle button for dark Mode is ON/ENABLED, by getDomAttribute ");
         System.out.println("STEP 4 - Passed - The Toggle button for DARK MODE is ON/ENABLED");
 
-        System.out.println("DON'T KNOW HOW TO SEE IF IT IS BLUE");
+
 
 
 
@@ -221,6 +222,7 @@ public class CustomerSiteDarkModeTest extends BaseTest{
 
 //        STEP 8: Repeat for Dark + High contrast mode
 //        Expected Result: Verify dark + high contrast mode remains applied after saving and refreshing the page
+        WaitUtils.implicitlyWaitFiveSeconds();
         customer.selectSettings();
         settings.selectLoginInfo();
         loginInformation.selectSiteAppearance();
