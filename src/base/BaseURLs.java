@@ -5,10 +5,7 @@ import static utils.DriverUtils.driver;
 public class BaseURLs {
 
     public static void goToCustomerSiteURL(){
-       driver.get("https://international.alarm.com/adc/");
-       // driver.get("https://www.alarm.com/login.aspx");
-      //driver.get("https://www.alarm.com/");
-
+        driver.get("https://www.alarm.com/login.aspx");
     }
 
     public static void goToDealerSiteURL(){

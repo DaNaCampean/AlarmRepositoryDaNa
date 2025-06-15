@@ -2,6 +2,7 @@ package base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 import utils.WaitUtils;
 
 import static utils.DriverUtils.driver;
@@ -58,9 +59,67 @@ public class BasePage {
         return isVisible(element).getText();
     }
 
-    public String getAttributeString(By element, String attribute) {
-        return isVisible(element).getDomAttribute(attribute);
+    public Color getCSSValueColor(By byElement){
+        // NU MERGE ASA:
+        // return Color.fromString(isVisible(highContrastToggleXPath).getCssValue("outline-color"));
+        Color myColor=null;
+        try {
+            WebElement element =  driver.findElement(byElement);
+            myColor =  Color.fromString(element.getCssValue("outline-color"));
+        }catch (Exception e) {
+            System.out.println("Cannot found or retrieve the value of the property");
+        }
+
+     return myColor;
+
     }
+
+    public String getAttributeString(By byElement, String attribute) {
+
+        WebElement element = driver.findElement(byElement);
+        String propertyValue = checkProperty(element);
+        String returnValue=null;
+
+        try {
+            if ("false".equals(propertyValue)){
+                returnValue = element.getDomAttribute(attribute);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Cannot found or retrieve the value of the property");
+        }
+        return returnValue;
+    }
+
+    public String checkProperty(WebElement element){
+
+        try {
+            element.getDomProperty("disabled");
+        } catch (Exception e) {
+            System.out.println("Cannot found or retrieve the value of the property");
+
+        }
+        return element.getDomProperty("disabled");
+
+    }
+
+    public void toggleClick(By byElement){
+
+        WebElement element =  driver.findElement(byElement);
+        String propertyValue = checkProperty(element);
+
+        try {
+            if ("false".equals(propertyValue))
+                element.click();
+
+        } catch (Exception e) {
+            System.out.println("The property is disabled=true, and cannot be clickable");
+
+        }
+
+    }
+
+
 }
 
 

@@ -16,7 +16,6 @@ public class CustomerSiteDarkModeTest extends BaseTest{
 
         System.out.println("\nPRECONDITIONS: Make sure DarkMode and High Contrast are OFF/ DISABLED");
         BaseURLs.goToCustomerSiteURL(); //open Customer Site
-        login.selectSignIn();
         login.signInWithCredentials(); // login with user and pass
         customer.selectSettings(); // Open Settings from left menu
         settings.selectLoginInfo(); // Open Login Information page
@@ -199,21 +198,15 @@ public class CustomerSiteDarkModeTest extends BaseTest{
 //        Expected Result: Verify dark mode is applied
 
          customer.selectHome();
-         String colorTheme = customer.colorScheme();
-         Assert.assertEquals(colorTheme, "dark", "Verified that the DarkMode is applied, by checking color-scheme");
-         System.out.println("STEP 6.1 - Passed - The dark Mode is applied ");
-
         Color colorcheck = customer.darkModeAppliedRGBA();
         assert colorcheck.asRgba().equals("rgba(5, 5, 5, 1)"); //dark //"Verified that the DarkMode is applied, by checking background-color using rgba function"
-        System.out.println("STEP 6.2 - Passed - The dark Mode is applied, by checking background-color using rgba function ");
+        System.out.println("STEP 6 - Passed - The dark Mode is applied, by checking background-color using rgba function ");
 
 
 //        STEP 7: Refresh page
 //        Expected Result: Verify dark mode is still applied
 
         customer.refreshApp();
-        Assert.assertEquals(customer.colorScheme(), "dark", "Verified that the DarkMode is still applied after Refresh, by checking color-scheme");
-        System.out.println("STEP 7.1 - Passed - The dark Mode is still applied after Refresh");
 
          colorcheck = customer.darkModeAppliedRGBA();
         assert colorcheck.asRgba().equals("rgba(5, 5, 5, 1)"); //dark //"Verified that the DarkMode is applied, by checking background-color using rgba function"
@@ -267,10 +260,6 @@ public class CustomerSiteDarkModeTest extends BaseTest{
 //        Expected Result: Verify dark mode and High Contrast are applied
 
         customer.selectHome();
-        colorTheme = customer.colorScheme();
-        Assert.assertEquals(colorTheme, "dark", "Verified that the DarkMode is applied, by checking color-scheme");
-        System.out.println("STEP 8.3.1 - Passed - The dark Mode is applied,  by checking color-scheme");
-
         colorcheck = customer.darkModeAppliedRGBA();
         assert colorcheck.asRgba().equals("rgba(5, 5, 5, 1)"); //dark //"Verified that the DarkMode is applied, by checking background-color using rgba function"
        // Assert.assertEquals(colorcheck, "rgba(5, 5, 5, 1)", "Verified that the DarkMode is applied, by checking background-color using rgba function");

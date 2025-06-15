@@ -4,8 +4,6 @@ import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.Color;
 
-import static utils.DriverUtils.driver;
-
 public class SiteAppearancePage extends BasePage {
 
     //Locators section
@@ -39,23 +37,28 @@ public void darkModeClick(){
  */
 
 
+
+
     public String returnAttributeDarkMode(String attribute){
-        return driver.findElement(darkModeToggleXPath).getDomAttribute(attribute);
+         return getAttributeString(darkModeToggleXPath, attribute);
 
     }
 
     public String returnAttributeContrast(String attribute){
-        return driver.findElement(highContrastToggleXPath).getDomAttribute(attribute);
+        return getAttributeString(highContrastToggleXPath, attribute);
    }
 
 
     public void darkModeClick(){
-        driver.findElement(darkModeToggleXPath).click();
-    }
+
+        toggleClick(darkModeToggleXPath);
+        }
 
     public void contrastClick(){
-        driver.findElement(highContrastToggleXPath).click();
+        toggleClick(highContrastToggleXPath);
+
     }
+
 
     public String pageHeaderName(){
         return getText(pageHeaderSiteAppearanceXPath);
@@ -72,13 +75,14 @@ public void darkModeClick(){
         contrastClick();//Toggle off
         contrastClick(); //Toggle on again for next to appear:  @media not all and (pointer: coarse)
        // NU MERGE ASA:  return Color.fromString(isVisible(highContrastToggleXPath).getCssValue("outline-color"));
-        return Color.fromString(driver.findElement(highContrastToggleXPath).getCssValue("outline-color"));
+        return getCSSValueColor(highContrastToggleXPath);
     }
 
     public Color darkModeToggleBlue() {
         darkModeClick();//Toggle off
         darkModeClick(); //Toggle on again for next to appear:  @media not all and (pointer: coarse) {
         // NU MERGE ASA:   return Color.fromString(isVisible(darkModeToggleXPath).getCssValue("outline-color"));
-        return Color.fromString(driver.findElement(darkModeToggleXPath).getCssValue("outline-color"));
+
+        return getCSSValueColor(darkModeToggleXPath);
     }
 }

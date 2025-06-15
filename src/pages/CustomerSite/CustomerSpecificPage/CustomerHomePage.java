@@ -13,7 +13,6 @@ public class CustomerHomePage extends BasePage {
     By settingsXPath = By.xpath("//p[@class='ellipsize ' and text() = 'Settings']"); // settings from menu
     By homeXPath = By.xpath("//p[text() = 'Home']"); //Home from menu
     By refreshXPath = By.xpath("//button[@aria-label = 'Reload Application']"); //refresh button
-    By backXPath = By.xpath("/html");
     By logOutButtonXPath = By.xpath("//span[text()='Log out']"); //log out
     By backgroundColorRGBA = By.xpath("//body[contains(@class,'base-background ember-application')]");
     By contrastXPath = By.xpath("//div[@id='app-page']");
@@ -22,18 +21,6 @@ public class CustomerHomePage extends BasePage {
     public void logOut(){
         clickWait(logOutButtonXPath);
     }
-
-    public String colorScheme(){
-        String colorTheme="";
-        String styleAttribute = getAttributeString(backXPath, "style"); // Get the 'style' attribute
-        if (styleAttribute.contains("color-scheme: dark")){
-            colorTheme = "dark";
-        }
-        else if (styleAttribute.contains("color-scheme: light")){
-            colorTheme = "light";
-        }
-        return colorTheme;
-        }
 
     public String customerName(){
         return getText(customerNameXPath);
