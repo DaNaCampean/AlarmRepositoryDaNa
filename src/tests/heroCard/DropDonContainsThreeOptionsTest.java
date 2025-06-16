@@ -1,6 +1,6 @@
 package tests.heroCard;
 
-public class CXT1271 {
+public class DropDonContainsThreeOptionsTest {
     /*
 
 CX-T1271	Weekly Build Smoketest - Hero Card - Drop down contains only 3 options - WEB - All Environments

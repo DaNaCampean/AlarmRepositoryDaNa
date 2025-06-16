@@ -17,9 +17,9 @@ public class LogInPage extends BasePage {
         clickWait(logInButtonXPath);
     }
 
-    public void signInWithCredentials(){
-        fillFields("PM360R_243D17", userNameXPath);
-        fillFields("Test@123456", passwordXPath);
+    public void signInWithCredentials(String username, String password){
+        fillFields(username, userNameXPath);
+        fillFields(password, passwordXPath);
         clickWait(logInButtonXPath);
     }
 }

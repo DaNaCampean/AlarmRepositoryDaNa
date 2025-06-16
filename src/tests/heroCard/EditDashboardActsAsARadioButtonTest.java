@@ -1,6 +1,6 @@
 package tests.heroCard;
 
-public class CXT1269 {
+public class EditDashboardActsAsARadioButtonTest {
     /*
     CX-T1269	Weekly Build Smoketest - Hero Card - edit dashboard acts as a radio button - WEB - All Environments
 Goal: verify edit dashboard options act as a radio button

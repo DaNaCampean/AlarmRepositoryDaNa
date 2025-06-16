@@ -1,4 +1,4 @@
-package tests;
+package tests.darkMode;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;

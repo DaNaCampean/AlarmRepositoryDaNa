@@ -1,6 +1,6 @@
 package tests.heroCard;
 
-public class CXT1340 {
+public class ChangeDashboardToDefaultTest {
     /*
 
 

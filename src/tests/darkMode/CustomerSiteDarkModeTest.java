@@ -1,4 +1,4 @@
-package tests;
+package tests.darkMode;
 
 import base.BaseURLs;
 import org.openqa.selenium.support.Color;
@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utils.WaitUtils;
 
-public class CustomerSiteDarkModeTest extends BaseTest{
+public class CustomerSiteDarkModeTest extends BaseTest {
 
     @BeforeMethod
 
@@ -16,7 +16,7 @@ public class CustomerSiteDarkModeTest extends BaseTest{
 
         System.out.println("\nPRECONDITIONS: Make sure DarkMode and High Contrast are OFF/ DISABLED");
         BaseURLs.goToCustomerSiteURL(); //open Customer Site
-        login.signInWithCredentials(); // login with user and pass
+        login.signInWithCredentials("PM360R_243D17", "Test@123456"); // login with user and pass
         customer.selectSettings(); // Open Settings from left menu
         settings.selectLoginInfo(); // Open Login Information page
         loginInformation.selectSiteAppearance(); // Open Site Appearance page
@@ -49,7 +49,7 @@ public class CustomerSiteDarkModeTest extends BaseTest{
 
         //Step: Login to customer site
         //Expected Result: Verify logged into customer site
-        login.signInWithCredentials();
+        login.signInWithCredentials("PM360R_243D17", "Test@123456"); // login with user and pass
         String customerSiteName = customer.customerName();
         Assert.assertEquals(customerSiteName, "PM360R_243D17", "Verified that the correct customer page opens, by customer name ");
         System.out.println("STEP 1 - Passed - correct Customer account LOGGED IN: " + customerSiteName + " opens");
@@ -88,7 +88,7 @@ public class CustomerSiteDarkModeTest extends BaseTest{
         // Expected Result: Verify logged into customer site
 
         BaseURLs.goToCustomerSiteURL();
-        login.signInWithCredentials();
+        login.signInWithCredentials("PM360R_243D17", "Test@123456"); // login with user and pass
         String customerSiteName = customer.customerName();
         Assert.assertEquals(customerSiteName, "PM360R_243D17", "Verified that the correct customer page opens, by customer name ");
         System.out.println("STEP 1 - Passed - correct Customer account LOGGED IN: " + customerSiteName + " opens");
@@ -148,7 +148,7 @@ public class CustomerSiteDarkModeTest extends BaseTest{
 
         BaseURLs.goToCustomerSiteURL();
 
-        login.signInWithCredentials();
+        login.signInWithCredentials("PM360R_243D17", "Test@123456"); // login with user and pass
         String customerSiteName = (customer.customerName());
         Assert.assertEquals(customerSiteName, "PM360R_243D17", "Verified that the correct customer page opens, by customer name ");
         System.out.println("STEP 1 - Passed - correct Customer account LOGGED IN: " + customerSiteName + " opens");

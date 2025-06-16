@@ -1,6 +1,6 @@
 package tests.heroCard;
 
-public class CXT1339 {
+public class HideHeroCardTest {
     /*
 
 CX-T1339	Weekly Build Smoketest - Hero Card - Cog drop down to hide hero card - WEB - All Environments

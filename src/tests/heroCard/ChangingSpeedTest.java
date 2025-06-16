@@ -1,6 +1,6 @@
 package tests.heroCard;
 
-public class CXT1276 {
+public class ChangingSpeedTest {
     /*
 
 CX-T1276	Weekly Build Smoketest - Hero Card - Highlights fast forward button - WEB - All Environments
