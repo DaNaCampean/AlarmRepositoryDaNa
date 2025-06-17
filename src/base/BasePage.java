@@ -48,7 +48,7 @@ public class BasePage {
     public static WebElement isVisible(By byElement) {
         WebElement element=null;
         try {
-           element  = WaitUtils.waitForElementToBeVisible(driver, byElement, 30);
+           element  = WaitUtils.waitForElementToBeVisible(driver, byElement, 10);
         } catch (Exception e) {
             System.out.println("The element is not visible = " + byElement);
         }

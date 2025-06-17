@@ -33,28 +33,22 @@ pause highlights ->	verify they pause
 
         hero.highlightsClick();
 
-
-        Assert.assertFalse(hero.isPlaying(), "Verified that the Video is playing");
+        //hero.pauseClick();
+        boolean check = hero.isPlaying();
+        System.out.println("ce e asta? is playing? = " + check);
+        Assert.assertFalse(check, "Verified that the Video is playing");
         System.out.println("STEP 2 - Passed - Video is playing");
 
- hero.pauseClick();
+        hero.pauseClick();
+        check = hero.isPlaying();
+        Assert.assertTrue(check, "Verified that the Video is paused");
+        System.out.println("STEP 3 - Passed - Video is paused");
 
         hero.playClick();
+        check = hero.isPlaying();
+        Assert.assertFalse(check, "Verified that the Video is playing");
+        System.out.println("STEP 3 - Passed - Video is playing");
 
-//        Assert.assertFalse(hero.isPlaying(), "Verified that the Video is playing");
-//        System.out.println("STEP 2 - Passed - Video is playing");
-//
-//        System.out.println("pause");
-//        hero.pauseClick();
-//        Assert.assertTrue(hero.isPlaying(), "Verified that the Video is paused");
-//        System.out.println("STEP 2 - Passed - Video is paused");
-//
-//        System.out.println("play");
-//        hero.playClick();
-//
-//
-//        System.out.println("pause");
-//        hero.pauseClick();
 
     }
 }
