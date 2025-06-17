@@ -103,6 +103,18 @@ public class BasePage {
 
     }
 
+    public String checkPropertyHero(WebElement element, String property){
+
+        try {
+            element.getDomProperty(property);
+        } catch (Exception e) {
+            System.out.println("Cannot found or retrieve the value of the property");
+
+        }
+        return element.getDomProperty(property);
+
+    }
+
     public void toggleClick(By byElement){
 
         WebElement element =  driver.findElement(byElement);

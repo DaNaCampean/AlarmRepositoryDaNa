@@ -40,14 +40,20 @@ public class HeroCard extends BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
         isVisible(video2);
         clickWait(video2);
-        isVisible(playXPath);
+       // isVisible(playXPath);
+        WebElement element =  isVisible(playXPath);
+        String getProp = checkPropertyHero(element,"hidden");
+        System.out.println("prop = " + getProp);
 
     }
 
     public boolean isPlaying(){
+
         WebElement element =  isVisible(playXPath);
+
 
         if (element != null) {
            return true;

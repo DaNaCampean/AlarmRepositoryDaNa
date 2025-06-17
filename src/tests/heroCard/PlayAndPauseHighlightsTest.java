@@ -35,7 +35,6 @@ pause highlights ->	verify they pause
 
         //hero.pauseClick();
         boolean check = hero.isPlaying();
-        System.out.println("ce e asta? is playing? = " + check);
         Assert.assertFalse(check, "Verified that the Video is playing");
         System.out.println("STEP 2 - Passed - Video is playing");
 
