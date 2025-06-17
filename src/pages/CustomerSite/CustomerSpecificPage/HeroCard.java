@@ -34,21 +34,44 @@ public class HeroCard extends BasePage {
         clickWait(playXPath);
       }
 
-    public void pauseClick(){
-        try {
-            Thread.sleep(5_000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+//    public void pauseClick(){
+//        try {
+//            Thread.sleep(5_000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        isVisible(video2);
+//        clickWait(video2);
+//       // isVisible(playXPath);
+//        WebElement element =  isVisible(playXPath);
+//        String getProp = checkPropertyHero(element,"hidden");
+//        System.out.println("prop = " + getProp);
+//
+//    }
 
-        isVisible(video2);
-        clickWait(video2);
-       // isVisible(playXPath);
-        WebElement element =  isVisible(playXPath);
-        String getProp = checkPropertyHero(element,"hidden");
-        System.out.println("prop = " + getProp);
-
+    By video3 = By.xpath("//div[contains(@class, 'activity-highlights-clip-container')]//video");
+    By video4 = By.cssSelector(".activity-highlights-clip-container video");
+public void pauseClick(){
+    try {
+        Thread.sleep(3_000);
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
     }
+
+    isVisible(video2);
+    clickWait(video2);
+    // isVisible(playXPath);
+    // now the video is paused.
+    WebElement element = driver.findElement(video4);
+    String getProp = checkPropertyHero(element,"paused");
+    System.out.println("prop = " + getProp);
+    clickWait(video2);
+    element = driver.findElement(video4);
+    getProp = checkPropertyHero(element,"paused");
+    System.out.println("prop = " + getProp);
+
+}
 
     public boolean isPlaying(){
 
