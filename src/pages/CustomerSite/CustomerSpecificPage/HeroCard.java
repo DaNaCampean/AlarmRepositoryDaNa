@@ -70,6 +70,8 @@ public void pauseClick(){
     element = driver.findElement(video4);
     getProp = checkPropertyHero(element,"paused");
     System.out.println("prop = " + getProp);
+    // bucata cu paused merge doar la video...la arm/disarm nu merge
+
 
 }
 
