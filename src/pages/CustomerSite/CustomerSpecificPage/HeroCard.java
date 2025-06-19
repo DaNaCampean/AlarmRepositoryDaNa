@@ -3,7 +3,6 @@ package pages.CustomerSite.CustomerSpecificPage;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.WaitUtils;
 
 import static utils.DriverUtils.driver;
 
@@ -12,6 +11,9 @@ public class HeroCard extends BasePage {
     By highlightsXPath = By.xpath("//p[text()='Highlights']");
     By playXPath = By.xpath("//div[@class='btn-play-highlights']");
     By video2 = By.xpath("//div[@class='lottie-player']");
+    By video3 = By.xpath("//div[contains(@class, 'activity-highlights-clip-container')]//video");
+    By video4 = By.cssSelector(".activity-highlights-clip-container video");
+    By percentage = By.xpath("//div[@class='progress ']");
 
     public void highlightsClick(){
         isVisible(highlightsXPath);
@@ -23,6 +25,20 @@ public class HeroCard extends BasePage {
 
        return  isVisible(highlightsXPath).getText();
     }
+
+    public static String highlightSlideShowPercentage(String text){
+        String percentage = null;
+        int start = ("transform: translateX(").length();
+        System.out.println("index of = " + start);
+        int end = text.indexOf("%");
+        System.out.println("end="+end);
+        percentage = text.substring(start, end);
+        System.out.println("calcule = " + percentage);
+
+
+
+        return percentage;
+    }
     public void playClick(){
         try {
             Thread.sleep(5_000);
@@ -32,6 +48,22 @@ public class HeroCard extends BasePage {
 
         isVisible(playXPath);
         clickWait(playXPath);
+
+        String  procent = driver.findElement(percentage).getAttribute("style");
+        System.out.println("ddd= " + procent);
+        String p1 = highlightSlideShowPercentage(procent);
+        try {
+            Thread.sleep(1_000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        procent = driver.findElement(percentage).getAttribute("style");
+        System.out.println("ddd222= " + procent);
+        String p2 =highlightSlideShowPercentage(procent);
+
+        if (p1.equals(p2))
+            System.out.println("percentagesss=22222 " + p1 + "-" + p2+ " and video is PAUSED");
+        else  System.out.println("percentagesss22222= " + p1 + "-" + p2+ " and video is PLAYing");
       }
 
 //    public void pauseClick(){
@@ -50,11 +82,14 @@ public class HeroCard extends BasePage {
 //
 //    }
 
-    By video3 = By.xpath("//div[contains(@class, 'activity-highlights-clip-container')]//video");
-    By video4 = By.cssSelector(".activity-highlights-clip-container video");
+
+
+
+
+
 public void pauseClick(){
     try {
-        Thread.sleep(3_000);
+        Thread.sleep(2_000);
     } catch (InterruptedException e) {
         throw new RuntimeException(e);
     }
@@ -63,16 +98,69 @@ public void pauseClick(){
     clickWait(video2);
     // isVisible(playXPath);
     // now the video is paused.
-    WebElement element = driver.findElement(video4);
-    String getProp = checkPropertyHero(element,"paused");
-    System.out.println("prop = " + getProp);
-    clickWait(video2);
-    element = driver.findElement(video4);
-    getProp = checkPropertyHero(element,"paused");
-    System.out.println("prop = " + getProp);
+
+
+//    WebElement element = driver.findElement(video4);
+//    String getProp = checkPropertyHero(element,"paused");
+//    System.out.println("prop = " + getProp);
+//    clickWait(video2);
+//    element = driver.findElement(video4);
+//    getProp = checkPropertyHero(element,"paused");
+//    System.out.println("prop = " + getProp);
     // bucata cu paused merge doar la video...la arm/disarm nu merge
 
+    String  procent = driver.findElement(percentage).getAttribute("style");
+ String p1 = highlightSlideShowPercentage(procent);
+    try {
+        Thread.sleep(1_000);
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+    }
+    procent = driver.findElement(percentage).getAttribute("style");
+    String p2 = highlightSlideShowPercentage(procent);
 
+    if (p1.equals(p2))
+        System.out.println("percentagesss= " + p1 + "-" + p2+ " and video is PAUSED");
+    else  System.out.println("percentagesss= " + p1 + "-" + p2+ " and video is PLAYing");
+
+
+
+
+}
+
+public String calculatePercentage(){
+
+    WebElement progressDiv = driver.findElement(By.xpath("//div[@class='progress ']"));
+
+    // Get the 'style' attribute
+    String styleAttr = progressDiv.getAttribute("style");
+    System.out.println("style= " + styleAttr);
+    // Extract the percentage using Java string methods
+    String percentage = null;
+    if (styleAttr != null && styleAttr.contains("translateX(")) {
+        int start = styleAttr.indexOf("translateX(") + "translateX(".length();
+        int end = styleAttr.indexOf("%", start);
+        percentage = styleAttr.substring(start, end) + "%";
+
+        System.out.println("test stringaaaa");
+         percentage = null;
+        styleAttr = "transform: translateX(0%);";
+
+         start = ("transform: translateX(").length()-1;
+        System.out.println("index of = " + start);
+             end = styleAttr.indexOf("%", start);
+        System.out.println("end="+end);
+            percentage = styleAttr.substring(start, end);
+            System.out.println("calcule = " + percentage);
+
+
+    }
+    // <div class="progress " style="transform: translateX(0%);"></div>
+    // transform: translateX(17%);
+
+    // Print the result
+    System.out.println("Extracted Percentage: " + percentage);
+    return percentage;
 }
 
     public boolean isPlaying(){
