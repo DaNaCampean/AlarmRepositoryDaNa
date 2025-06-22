@@ -24,6 +24,7 @@ public class BaseTest {
     public void createObjects(){
         login = new LogInPage();
         hero = new HeroCard();
+
     }
 
     @AfterSuite

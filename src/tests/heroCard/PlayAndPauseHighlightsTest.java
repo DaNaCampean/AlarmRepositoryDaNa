@@ -25,6 +25,7 @@ pause highlights ->	verify they pause
     @Test
 
     public  void login(){
+
         BaseURLs.goToCustomerSiteURL();
 
         login.signInWithCredentials("IQ4EU_sv37522", "Test@123456");

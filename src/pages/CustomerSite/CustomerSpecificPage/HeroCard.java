@@ -4,6 +4,9 @@ import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static utils.DriverUtils.driver;
 
 public class HeroCard extends BasePage {
@@ -15,10 +18,57 @@ public class HeroCard extends BasePage {
     By video4 = By.cssSelector(".activity-highlights-clip-container video");
     By percentage = By.xpath("//div[@class='progress ']");
 
+    By cogXPath = By.xpath("//div[@class='dropdown-actions']");
+    By dropdown = By.xpath("//div[@class='content']");
+
+    By customerName = By.xpath("//span[@class='login-name']");
+
+    public String getCustomerName(){
+        isVisible(customerName);
+        //return driver.findElement(customerName).getDomProperty("textContent");
+        return driver.findElement(customerName).getText();
+
+    }
+
+    By highlightsGifXPath = By.xpath("//button[@class = 'highlights-button']//img[@alt='Highlights Button']");
+    public boolean isHighlightsGif(){
+        WebElement highGif = isVisible(highlightsGifXPath);
+        String src = highGif.getDomAttribute("src");
+
+        if (src.endsWith(".gif")){
+            return true;
+        }
+
+        return false;
+
+
+    }
     public void highlightsClick(){
         isVisible(highlightsXPath);
         clickWait(highlightsXPath);
 
+    }
+
+    public void cogClick() {
+        isVisible(cogXPath);
+        clickWait(cogXPath);
+    }
+    public ArrayList<String> heroCardSettingsItems() {
+
+
+        isVisible(dropdown);
+        WebElement optionsDropDown = driver.findElement(dropdown);
+
+        List<WebElement> items = driver.findElements(By.xpath("//div[@class='content']//ul[@class='items-list']/li"));
+        ArrayList<String> itemsListString = new ArrayList<>();
+        for (WebElement item : items) {
+            WebElement itemElement = item.findElement(By.xpath(".//span[@class='name fs-unmask']"));
+            String itemName = itemElement.getText();
+
+            itemsListString.add(itemName);
+        }
+
+        return itemsListString;
     }
 
     public String getText(){
