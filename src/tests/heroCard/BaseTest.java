@@ -24,6 +24,9 @@ public class BaseTest {
     public void createObjects(){
         login = new LogInPage();
         hero = new HeroCard();
+    }
+
+    public void preconditions(){
 
     }
 

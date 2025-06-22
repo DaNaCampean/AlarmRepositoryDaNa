@@ -22,7 +22,33 @@ public class HeroCard extends BasePage {
     By dropdown = By.xpath("//div[@class='content']");
 
     By customerName = By.xpath("//span[@class='login-name']");
+    By highlightsGifXPath = By.xpath("//button[@class = 'highlights-button']//img[@alt='Highlights Button']");
+    By heroCardXPath = By.xpath("//div[@class='hero-card ']");
 
+    By settingsLeftMenuXPath = By.xpath("//button[@aria-label='Edit home page layout']");
+    By showHeroXPath = By.xpath("//button[contains(@class, 'toggle-setting') and @aria-label='Show']");
+
+    By saveButton = By.xpath("//button[contains(@class, 'simple-btn') and span[text()='Save']]");
+
+    public void preconditions(){
+
+        if (isVisible(heroCardXPath)!=null)
+            System.out.println("HERO OK");
+        else {
+            System.out.println("hero nok");
+            //da enable la hero card
+            isVisible(settingsLeftMenuXPath);
+            clickWait(settingsLeftMenuXPath);
+            isVisible(showHeroXPath);
+            clickWait(showHeroXPath);
+            isVisible(saveButton);
+            clickWait(saveButton);
+            System.out.println("change hero" );
+
+        }
+
+
+    }
     public String getCustomerName(){
         isVisible(customerName);
         //return driver.findElement(customerName).getDomProperty("textContent");
@@ -30,32 +56,33 @@ public class HeroCard extends BasePage {
 
     }
 
-    By highlightsGifXPath = By.xpath("//button[@class = 'highlights-button']//img[@alt='Highlights Button']");
+    public boolean isCogVisible(){
+        if (isVisible(cogXPath)!=null)
+            return true;
+        return false;
+    }
+
+
     public boolean isHighlightsGif(){
         WebElement highGif = isVisible(highlightsGifXPath);
         String src = highGif.getDomAttribute("src");
-
         if (src.endsWith(".gif")){
             return true;
         }
-
         return false;
-
-
     }
+
     public void highlightsClick(){
         isVisible(highlightsXPath);
         clickWait(highlightsXPath);
-
     }
 
     public void cogClick() {
         isVisible(cogXPath);
         clickWait(cogXPath);
     }
+
     public ArrayList<String> heroCardSettingsItems() {
-
-
         isVisible(dropdown);
         WebElement optionsDropDown = driver.findElement(dropdown);
 
@@ -72,7 +99,6 @@ public class HeroCard extends BasePage {
     }
 
     public String getText(){
-
        return  isVisible(highlightsXPath).getText();
     }
 
@@ -84,9 +110,6 @@ public class HeroCard extends BasePage {
         System.out.println("end="+end);
         percentage = text.substring(start, end);
         System.out.println("calcule = " + percentage);
-
-
-
         return percentage;
     }
     public void playClick(){
@@ -115,26 +138,6 @@ public class HeroCard extends BasePage {
             System.out.println("percentagesss=22222 " + p1 + "-" + p2+ " and video is PAUSED");
         else  System.out.println("percentagesss22222= " + p1 + "-" + p2+ " and video is PLAYing");
       }
-
-//    public void pauseClick(){
-//        try {
-//            Thread.sleep(5_000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        isVisible(video2);
-//        clickWait(video2);
-//       // isVisible(playXPath);
-//        WebElement element =  isVisible(playXPath);
-//        String getProp = checkPropertyHero(element,"hidden");
-//        System.out.println("prop = " + getProp);
-//
-//    }
-
-
-
-
 
 
 public void pauseClick(){
@@ -205,8 +208,6 @@ public String calculatePercentage(){
 
 
     }
-    // <div class="progress " style="transform: translateX(0%);"></div>
-    // transform: translateX(17%);
 
     // Print the result
     System.out.println("Extracted Percentage: " + percentage);
@@ -224,9 +225,6 @@ public String calculatePercentage(){
              return false;
         }
    }
-
-
-    // //div[@class='btn-play-highlights']
 
 
 }

@@ -6,7 +6,7 @@ public class InfoQuestions {
 IQ4EU_sv37522
 Test@123456
 
-
+0. ADD RECONDITII!!! IN BASEtEST>
 1. aveti suitele cu baseTestul lor?
 2. init driver...va fi duplicat
 3. preconditiile? vor fi in baseTest?

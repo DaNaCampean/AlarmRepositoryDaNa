@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DropDownContainsThreeOptionsTest extends BaseTest {
+public class DONE_DropDownContainsThreeOptionsTest extends BaseTest {
     /*
 
 CX-T1271	Weekly Build Smoketest - Hero Card - Drop down contains only 3 options - WEB - All Environments
