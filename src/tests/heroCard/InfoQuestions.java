@@ -18,8 +18,8 @@ am folosit si hidden prop la butonul de play...dar same stufff nu gasesste xpath
 daca e video sau nu e diferit. initial la video am facut cu prop pause...
 dar nu merge la arm disarm...
 finalul e cu percentage...pare sa fie ok la ambele
-
-
+5.  clickWait(settingsLeftMenuXPath); nu merge direct. dar daca dau un click sa zicem pe cog din hero, apoi merge si asta
+am pus un wait de fapt si merge acum
 5. verificare gif ...am pus in hero... oare trebuie in basePage? din start? ca poate vor mai fi pe proiect verificrai?
 sau intai se pune in hero...si cand mai are ceva la fel se muta in base?
 4. dupolicate:

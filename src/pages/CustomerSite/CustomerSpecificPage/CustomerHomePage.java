@@ -17,6 +17,18 @@ public class CustomerHomePage extends BasePage {
     By backgroundColorRGBA = By.xpath("//body[contains(@class,'base-background ember-application')]");
     By contrastXPath = By.xpath("//div[@id='app-page']");
 
+    By settingsCogLeftMenuXPath = By.xpath("//button[@aria-label='Edit home page layout']");
+
+    public void settingCogMenuClick(){
+        isVisible(settingsCogLeftMenuXPath);
+        System.out.println("get ceva = " +driver.findElement(settingsCogLeftMenuXPath).getDomAttribute("aria-label"));
+        try {
+            Thread.sleep(5_000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        clickWait(settingsCogLeftMenuXPath);
+    }
     //Methods section
     public void logOut(){
         clickWait(logOutButtonXPath);

@@ -3,6 +3,7 @@ package tests.heroCard;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import pages.CustomerSite.CustomerSpecificPage.CustomerHomePage;
 import pages.CustomerSite.CustomerSpecificPage.HeroCard;
 import pages.CustomerSite.LogInPage;
 import utils.DriverUtils;
@@ -10,6 +11,7 @@ import utils.DriverUtils;
 public class BaseTest {
     public LogInPage login;
     public HeroCard hero;
+    public CustomerHomePage customer;
 
     @BeforeSuite
     public void initDriver(){
@@ -24,6 +26,7 @@ public class BaseTest {
     public void createObjects(){
         login = new LogInPage();
         hero = new HeroCard();
+        customer = new CustomerHomePage();
     }
 
     public void preconditions(){
