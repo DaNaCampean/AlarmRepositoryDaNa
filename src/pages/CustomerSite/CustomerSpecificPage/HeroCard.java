@@ -159,11 +159,12 @@ public class HeroCard extends BasePage {
 
         // /span[@class='name fs-unmask'
 
-     //   WebElement itemElement1 = driver.findElement(By.xpath( "//div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]//span[@class='labelled-by-span']"));
+     WebElement itemElement1 = driver.findElement(By.xpath( "//div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]//span[@class='labelled-by-span']"));
 
-        WebElement itemElement1 = driver.findElement(By.xpath( "//div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]"));
+      //  WebElement itemElement1 = driver.findElement(By.xpath( "//div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]"));
 
         System.out.println("THIS = " + itemElement1.getText());
+        System.out.println("innertext=" + itemElement1.getDomProperty("innerText"));
 
 
         List<WebElement> items = driver.findElements(drakeContainerXPath);
