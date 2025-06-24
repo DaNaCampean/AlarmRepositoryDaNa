@@ -4,9 +4,9 @@ import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
-
 import static utils.DriverUtils.driver;
 
 public class HeroCard extends BasePage {
@@ -14,50 +14,81 @@ public class HeroCard extends BasePage {
     By highlightsXPath = By.xpath("//p[text()='Highlights']");
     By playXPath = By.xpath("//div[@class='btn-play-highlights']");
     By video2 = By.xpath("//div[@class='lottie-player']");
-    By video3 = By.xpath("//div[contains(@class, 'activity-highlights-clip-container')]//video");
-    By video4 = By.cssSelector(".activity-highlights-clip-container video");
     By percentage = By.xpath("//div[@class='progress ']");
-
     By cogXPath = By.xpath("//div[@class='dropdown-actions']");
     By dropdown = By.xpath("//div[@class='content']");
-
     By customerName = By.xpath("//span[@class='login-name']");
     By highlightsGifXPath = By.xpath("//button[@class = 'highlights-button']//img[@alt='Highlights Button']");
     By heroCardXPath = By.xpath("//div[@class='hero-card ']");
-
     By settingsLeftMenuXPath = By.xpath("//button[@aria-label='Edit home page layout']");
     By showHeroXPath = By.xpath("//button[contains(@class, 'toggle-setting') and @aria-label='Show']");
     By hideHeroXPath = By.xpath("//button[contains(@class, 'toggle-setting') and @aria-label='Hide']");
-
     By showHideHeroXPath = By.xpath("//button[contains(@class, 'toggle-setting')]//*[name()='svg'][contains(@class, 'svg-invisible')]");
     By saveButton = By.xpath("//button[contains(@class, 'simple-btn') and span[text()='Save']]");
-
     By heroCardEnabled = By.xpath("//button[contains(@class, 'toggle-setting selected')]");
-
     By drakeContainerXPath = By.xpath( "//div[@class='drake-container']/div/div");
+    By cardsViewXPath = By.xpath("//main[@id='app-content']");
+
+    public boolean isHeroCardVisible(){
+        isVisible(cardsViewXPath);
+        WebElement cardsView = driver.findElement(cardsViewXPath);
+        String content = cardsView.getDomProperty("innerText");
+
+        if (content.contains("CHANGE HERO CARD VIEW"))
+            return true;
+        else
+            return false;
+    }
+
     public void preconditions(){
 
-        isVisible(settingsLeftMenuXPath);
-        try {
-            Thread.sleep(5_000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        clickWait(settingsLeftMenuXPath);
+        System.out.println("PRECONDITIONS");
 
+        isVisible(cardsViewXPath);
+        WebElement cardsView = driver.findElement(cardsViewXPath);
+        String content = cardsView.getDomProperty("innerText");
 
-        String isEnabledHero = isVisible(heroCardEnabled).getDomAttribute("aria-label");
-        if (isEnabledHero.equals("Video Clips"))
-            System.out.println("HERO OK");
+        if (content.contains("CHANGE HERO CARD VIEW"))
+            System.out.println("hero card exists");
         else {
-            System.out.println("hero nok");
-            //da enable la hero card
-            showHeroCard();
+            System.out.println("hero card is hidden");
+
+            isVisible(settingsLeftMenuXPath);
+            try {
+                Thread.sleep(5_000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            clickWait(settingsLeftMenuXPath);
+            String isEnabledHero = isVisible(heroCardEnabled).getDomAttribute("aria-label");
+            if (isEnabledHero.equals("Video Clips"))
+                System.out.println("HERO OK");
+            else {
+                System.out.println("hero nok");
+                //da enable la hero card
+                showHeroCard();
+            }
         }
+        System.out.println("DONE preconditions");
+    }
+
+
+    public boolean isCogVisibleLeftMenu(){
+       isVisible(settingsLeftMenuXPath);
+       String isHidden = checkPropertyHero(driver.findElement(settingsLeftMenuXPath), "hidden");
+        System.out.println("hidden = " + isHidden);
+
+        String isHide = checkPropertyHero(driver.findElement(settingsLeftMenuXPath), "className");
+        System.out.println("Is hide class = " + isHide);
+
+        if (isHide.equals(""))
+            return true;
+        else return false;
+
+       // return Boolean.parseBoolean(isHidden);
 
 
     }
-
 
     public void showHeroCard(){
         isVisible(settingsLeftMenuXPath);
@@ -124,6 +155,7 @@ public class HeroCard extends BasePage {
        item.click();
 
     }
+
     public ArrayList<String> heroCardSettingsItems() {
         isVisible(dropdown);
         WebElement optionsDropDown = driver.findElement(dropdown);
@@ -148,24 +180,23 @@ public class HeroCard extends BasePage {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        //div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]
-        isVisible(drakeContainerXPath);
-        WebElement optionsDropDown = driver.findElement(drakeContainerXPath);
+
+//        isVisible(drakeContainerXPath);
+//        WebElement optionsDropDown = driver.findElement(drakeContainerXPath);
 
 
-        // xpath = /div[@class='drake-container']/div/div
-        // //div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]
-        // Hero Card, press enter or space to view card details.
+//
+//     WebElement itemElement1 = driver.findElement(By.xpath( "//div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]//span[@class='labelled-by-span']"));
 
-        // /span[@class='name fs-unmask'
 
-     WebElement itemElement1 = driver.findElement(By.xpath( "//div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]//span[@class='labelled-by-span']"));
-
-      //  WebElement itemElement1 = driver.findElement(By.xpath( "//div[@class='drake-container']/div/div//div[contains(@class, 'hero-card')]"));
-
-        System.out.println("THIS = " + itemElement1.getText());
-        System.out.println("innertext=" + itemElement1.getDomProperty("innerText"));
-
+        isVisible(cardsViewXPath);
+      WebElement cardsView = driver.findElement(cardsViewXPath);
+      String content = cardsView.getDomProperty("innerText");
+      //  System.out.println("cardsView = " + content);
+//        System.out.println("innertext=" + itemElement1.getDomProperty("innerText"));
+        if (content.contains("CHANGE HERO CARD VIEW"))
+            System.out.println("hero card exists");
+        else System.out.println("hero card is hidden");
 
         List<WebElement> items = driver.findElements(drakeContainerXPath);
         ArrayList<String> itemsListString = new ArrayList<>();

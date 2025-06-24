@@ -12,7 +12,13 @@ public class BasePage {
     //Methods section
 
     public void selectItem(By element) {
+
         isVisible(element);
+        try {
+            Thread.sleep(3_000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         clickWait(element);
     }
 
