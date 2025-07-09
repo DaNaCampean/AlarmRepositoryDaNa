@@ -214,7 +214,7 @@ public class HeroCard extends BasePage {
     public String getText(){
        return  isVisible(highlightsXPath).getText();
     }
-
+// gethighLightsText - asta e specifica pentru pagina asta, si highlights
     public static String highlightSlideShowPercentage(String text){
         String percentage = null;
         int start = ("transform: translateX(").length();

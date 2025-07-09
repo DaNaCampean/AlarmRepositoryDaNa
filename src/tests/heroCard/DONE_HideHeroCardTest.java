@@ -34,7 +34,7 @@ Preconditions:
     @Test
 
     public void hideHeroCard(){
-
+//============================ AR MERGE AICI PRECONDITIILE
         //Login to an account that meets pre condition => the hero card should have a cog
 
         BaseURLs.goToCustomerSiteURL(); // go to alarm.com sign in page
